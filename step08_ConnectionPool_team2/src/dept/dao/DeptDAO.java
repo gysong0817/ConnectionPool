@@ -116,6 +116,7 @@ public class DeptDAO {
 		try {
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(sql);
+<<<<<<< HEAD
 			pstmt.setNString(1,dept.getDname());
 			pstmt.setNString(2,dept.getLoc());
 			pstmt.setInt(3,dept.getDeptno());
@@ -125,8 +126,17 @@ public class DeptDAO {
 			if(result != 0) {
 				return true;
 			}
+=======
+			pstmt.setString(1, dept.getDname());
+			pstmt.setString(2, dept.getLoc());
+			pstmt.setInt(3, dept.getDeptno());
+>>>>>>> 04847408f6f4604e1d6f52000fdf1cec263e7f62
 			
-			// ?
+			result = pstmt.executeUpdate();
+			
+			if(result != 0) {
+				return true;
+			}
 			
 		}finally {
 			DBUtil.close(pstmt, con);
