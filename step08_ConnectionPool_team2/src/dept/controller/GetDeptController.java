@@ -1,12 +1,16 @@
 package dept.controller; 
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import dept.dao.DeptDAO;
+import dept.dto.Dept;
 
 @WebServlet("/getDept.do")
 public class GetDeptController extends HttpServlet {
@@ -20,6 +24,32 @@ public class GetDeptController extends HttpServlet {
 		 */
 		
 		// ?
+String url = "errors/error.jsp";
 		
+		//int deptno = Integer.parseInt(request.getParameter("deptno"));
+		int deptno = Integer.parseInt(request.getParameter("deptno"));
+//		if(deptno == null) {
+//			deptno = "0";
+//			request.setAttribute("error","존재하지 않는 부서");
+//			request.getRequestDispatcher(url).forward(request, response);
+//		}
+		Dept dept = null;
+		
+		try {
+			dept = DeptDAO.getDeptByDeptno(deptno);
+			if(dept != null) {
+				request.setAttribute("dept",dept);
+				url = "dept/getDept.jsp";
+				request.getRequestDispatcher(url).forward(request, response);
+			}else {
+				request.setAttribute("error","존재하지 않는 부서");
+				request.getRequestDispatcher(url).forward(request, response);
+			}
+		} catch (SQLException e) {
+			request.setAttribute("error","qntj wjdqh cnffur tlfvo");
+			request.getRequestDispatcher(url).forward(request, response);
+		}
+				
 	}
 }
+
