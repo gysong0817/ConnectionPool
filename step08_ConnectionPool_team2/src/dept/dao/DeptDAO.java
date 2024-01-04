@@ -23,6 +23,15 @@ public class DeptDAO {
 		
 		try {
 			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			deptList = new ArrayList<Dept>();
+			
+			while(rset.next()) {
+				
+				deptList.add(new Dept(rset.getInt("deptno"),rset.getString("dname"),rset.getString("loc")));
+			}
 			
 			// ?
 			
@@ -46,15 +55,21 @@ public class DeptDAO {
 		
 		try {
 			con = DBUtil.getConnection();
-			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, deptno);
+			rset = pstmt.executeQuery();
 			// ?
+			if(rset.next()) {
+				dept = new Dept(rset.getInt("deptno"),rset.getString("dname"), rset.getString("loc"));
 			
+			}
 		}finally {
 			DBUtil.close(rset, pstmt, con);
 		}
 		
 		return dept;
 	}
+
 
 	// insertDept
 	// Query : INSERT INTO dept(deptno, dname, loc) VALUES (?, ?, ?)
@@ -68,6 +83,16 @@ public class DeptDAO {
 		
 		try {
 			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, dept.getDeptno());
+			pstmt.setString(2,  dept.getDname());
+			pstmt.setString(3,  dept.getLoc());
+			
+			result = pstmt.executeUpdate();
+			
+			if(result != 0) {
+				return true;
+			}
 			
 			// ?
 			
@@ -101,12 +126,19 @@ public class DeptDAO {
 				return true;
 			}
 			
+			result = pstmt.executeUpdate();
+			
+			if(result != 0) {
+				return true;
+			}
+			
 		}finally {
 			DBUtil.close(pstmt, con);
 		}
 		
 		return false;
 	}
+	
 	
 	// deleteDept
 	// Query : DELETE FROM dept WHERE deptno = ?
@@ -120,7 +152,13 @@ public class DeptDAO {
 		
 		try {
 			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1,deptno);
+			result = pstmt.executeUpdate();
 			
+			if(result != 0) {
+				return true;
+			}
 			// ?
 			
 		}finally {
