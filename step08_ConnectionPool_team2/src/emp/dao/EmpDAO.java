@@ -187,5 +187,31 @@ public class EmpDAO {
 		return empList;
 	}
 
+	// 회원탈퇴
+	// deleteEmp
+	// Query : DELETE FROM emp WHERE empno = ?
+	public static boolean deleteEmpByEmpno(int empno) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		String sql = "DELETE FROM emp WHERE empno = ?";
+		int result = 0;
+
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, empno);
+
+			result = pstmt.executeUpdate();
+
+			if (result != 0) {
+				return true;
+			}
+		} finally {
+			DBUtil.close(pstmt, con);
+		}
+
+		return false;
+	}
 	
 }
