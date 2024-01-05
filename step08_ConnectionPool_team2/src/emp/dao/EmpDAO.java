@@ -115,5 +115,40 @@ public class EmpDAO {
 		
 		return false;
 	}
+
+	public static boolean updateEmp(Emp emp) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		int result = 0;
+		
+		String sql = "UPDATE emp SET ename = ?, job = ?, mgr = ?, hiredate = ?, sal = ?, comm = ?, deptno = ? WHERE empno = ?";
+		
+		try {
+			con = DBUtil.getConnection();
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, emp.getEname());
+			pstmt.setString(2, emp.getJob());
+			pstmt.setInt(3, emp.getMgr());
+			pstmt.setDate(4, emp.getHiredate());
+			pstmt.setFloat(5, emp.getSal());
+			pstmt.setInt(6, emp.getComm());
+			pstmt.setInt(7, emp.getDeptno());
+			pstmt.setInt(8, emp.getEmpno());
+			
+			result = pstmt.executeUpdate();
+			
+			if(result != 0) {
+				return true;
+			}
+			
+		}finally {
+			DBUtil.close(pstmt, con);
+		}
+		
+		return false;
+	}
+
 	
 }
