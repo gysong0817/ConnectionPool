@@ -79,8 +79,7 @@
 	<span style="font-size:12pt;"><input type="button" value="메인으로" onclick="location.href='getDeptList.do'"></span>
 	<!-- 부서생성 클릭 시, 새로운 부서 정보 입력 페이지로 이동 -->
 	<span style="font-size:12pt;"><input type="button" value="부서생성" onclick="location.href='insertDeptForm.do'"></span>
-		
-	<span style="font-size:12pt;"><input type="button" value="EMP" onclick="location.href='getEmpList.do'"></span>
+	<span style="font-size:12pt;"><input type="button" value="사원목록" onclick="location.href='getEmpList.do'"></span>
 </div>
 </c:if>
 <c:if test="${empty sessionScope.userId}">
