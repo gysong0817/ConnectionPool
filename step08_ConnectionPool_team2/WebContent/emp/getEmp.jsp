@@ -130,7 +130,7 @@
 	        		<span style="font-size:12pt;">
 	        			<!-- 수정할 부서번호 서버로 전달 -->
 	        			<input type="hidden" name="empno" value="${requestScope.emp.empno}">
-						<input type="submit" value="부서수정">
+						<input type="submit" value="사원정보수정">
 					</span>
 				</b>
 			</td>
@@ -139,9 +139,7 @@
 </form>
 <hr>
 <div align=center>
-	<span style="font-size:12pt;"><input type="button" value="메인으로" onclick="location.href='getEmpList.do'"></span>
-	<!-- 부서 삭제 로직 -->
-	<span style="font-size:12pt;"><input type="button" value="부서삭제" onclick=""></span>
+	<span style="font-size:12pt;"><input type="button" value="사원목록" onclick="location.href='getEmpList.do'"></span>
 </div>
 
 <%@ include file="../layout/footer.jsp" %>

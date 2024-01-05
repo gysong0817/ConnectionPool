@@ -131,7 +131,7 @@
 	        <td width="450" height="20" align="center">
 	        	<b>
 	        		<span style="font-size:9pt;">
-						<input type="submit" value="부서수정">
+						<input type="submit" value="사원정보수정">
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="reset" value="다시작성">
 					</span>
@@ -142,7 +142,7 @@
 </form>
 <hr>
 <div align=center>
-	<span style="font-size:12pt;"><input type="button" value="메인으로" onclick="location.href='getEmpList.do'"></span>
+	<span style="font-size:12pt;"><input type="button" value="사원목록" onclick="location.href='getEmpList.do'"></span>
 </div>
 
 <%@ include file="../layout/footer.jsp" %>
