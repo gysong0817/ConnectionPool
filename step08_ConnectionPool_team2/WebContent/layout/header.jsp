@@ -7,7 +7,7 @@
   <p>Dept Practice Header</p>
   <div align="right">
   		<c:if test="${not empty sessionScope.userId}">
-  			<span>${sessionScope.userName} 님 </span>
+  			<span style="font-size:12pt;">${sessionScope.userName} 님 환영합니다.</span>
 	  		<span style="font-size:12pt;"><input type="button" value="로그아웃" onclick="location.href='logout.do'"></span>
 		</c:if>
 		<c:if test="${not empty sessionScope.userId}">
