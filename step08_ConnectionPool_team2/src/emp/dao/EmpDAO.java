@@ -150,5 +150,42 @@ public class EmpDAO {
 		return false;
 	}
 
+	public static ArrayList<Emp> getEmpList() throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		ArrayList<Emp> empList = null;
+		
+		String sql = "SELECT * FROM emp";
+		
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			empList = new ArrayList<Emp>();
+			
+			while(rset.next()) {
+				
+				empList.add(new Emp(rset.getInt("empno"),
+									rset.getString("ename"),
+									rset.getString("job"),
+									rset.getInt("mgr"),
+									rset.getDate("hiredate"),
+									rset.getFloat("sal"),
+									rset.getInt("comm"),
+									rset.getInt("deptno")));
+			}
+			
+			// ?
+			
+		}finally {
+			DBUtil.close(rset, pstmt, con);
+		}
+		
+		return empList;
+	}
+
 	
 }
