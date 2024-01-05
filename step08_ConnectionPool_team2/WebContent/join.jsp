@@ -129,8 +129,10 @@
 	        	<b>
 	        		<span style="font-size:12pt;">
 	        			<input type="submit" value="회원가입">
-						&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;
 						<input type="reset" value="다시작성">
+						&nbsp;&nbsp;
+						<input type="button" value="메인으로" onclick="location.href='getDeptList.do'">
 					</span>
 				</b>
 			</td>
