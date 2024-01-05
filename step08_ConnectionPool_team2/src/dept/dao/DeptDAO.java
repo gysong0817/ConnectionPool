@@ -126,12 +126,6 @@ public class DeptDAO {
 				return true;
 			}
 			
-			result = pstmt.executeUpdate();
-			
-			if(result != 0) {
-				return true;
-			}
-			
 		}finally {
 			DBUtil.close(pstmt, con);
 		}
